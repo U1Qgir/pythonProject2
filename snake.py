@@ -2,7 +2,7 @@ import pygame
 from random import *
 pygame.init()
 
-SIZE = WIDTH, HEIGHT = 1000, 800
+SIZE = WIDTH, HEIGHT = 600, 400
 screen = pygame.display.set_mode(SIZE)
 clock = pygame.time.Clock()
 
@@ -12,9 +12,9 @@ game = True
 score = 0
 position=[300,200]
 moove=[0,0]
-W1=randint(20,980)
-H2=randint(20,780)
-block_size=20
+W1=randint(10,580)
+H2=randint(10,380)
+block_size=10
 while game:
     score_font = pygame.font.Font(None, 35)
 
@@ -42,11 +42,12 @@ while game:
                 moove[0] = 0
 
     screen.fill((0, 0, 0))
-    pygame.draw.rect(screen,blue,(position[0],position[1],20,20))
-    pygame.draw.rect(screen,white,(W1,H2,20,20))
+    if W1 % 10 ==0 and H2 % 10==0:
+        pygame.draw.rect(screen,white,(W1,H2,10,10))
+    pygame.draw.rect(screen,blue,(position[0],position[1],10,10))
     screen.blit(text_score, (20, 30))
 
-    clock.tick(5)
+    clock.tick(15)
 
     pygame.display.update()
 
