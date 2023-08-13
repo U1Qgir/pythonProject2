@@ -3,7 +3,7 @@ from random import *
 
 def our_snake(snake_block, snake_list):
     for x in snake_list:
-        pygame.draw.rect(screen, blue, [x[0], x[1], snake_block, snake_block])
+        pygame.draw.rect(screen, white, [x[0], x[1], snake_block, snake_block])
 
 pygame.init()
 
@@ -27,7 +27,7 @@ snake_list = []
 game = True
 
 while game:
-    clock.tick(30)
+    clock.tick(15)
     score_font = pygame.font.Font(None, 35)
 
     text_score=score_font.render(str(score-1),1,(255,255,245))
@@ -48,8 +48,8 @@ while game:
                 moove[1]= block_size
                 moove[0] = 0
 
-    screen.fill((0, 0, 0))
-    pygame.draw.rect(screen,blue,(position[0],position[1],10,10))
+    screen.fill((0, 10, 230))
+    pygame.draw.rect(screen,white,(position[0],position[1],10,10))
     pygame.draw.rect(screen,green,(foodpos[0],foodpos[1],10,10))
     screen.blit(text_score, (20, 30))
     snake_head = []
@@ -67,3 +67,11 @@ while game:
         foodpos[0] = (randint(0,WIDTH)//10)*10
         foodpos[1] = (randint(0,HEIGHT)//10)*10
         score+=1
+    if position[0]>SIZE[0]:
+        position[0]-=SIZE[0]
+    if position[0]<0:
+        position[0]+=SIZE[0]
+    if position[1]>SIZE[1]:
+        position[1]-=SIZE[1]
+    if position[1]<0:
+        position[1]+=SIZE[1]
